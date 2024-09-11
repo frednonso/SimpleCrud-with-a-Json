@@ -49,9 +49,15 @@ function deleteUser($id)
 {
     $users = getUsers();
 
+    
     foreach ($users as $i => $user) {
         if ($user['id'] == $id) {
             array_splice($users, $i, 1);
+            if(file_exists(__DIR__."/images/".$user["id"].".".$user["extension"])) {
+                unlink(__DIR__."/images/".$user["id"].".".$user["extension"]);  // deletes the image also
+
+            }
+
         }
     }
 
